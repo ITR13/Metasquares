@@ -1,10 +1,11 @@
 package main
 
 import (
-	"MetasquaresAI/AIs"
-	"MetasquaresAI/Animators"
-	"MetasquaresAI/Engine"
 	"fmt"
+
+	"github.com/ITR13/metasquares/AI"
+	"github.com/ITR13/metasquares/animator"
+	"github.com/ITR13/metasquares/engine"
 )
 
 func main() {

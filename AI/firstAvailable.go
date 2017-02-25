@@ -1,7 +1,7 @@
 package AI
 
 import (
-	"MetasquaresAI/Engine"
+	"github.com/ITR13/metasquares/engine"
 )
 
 type FirstAvailable struct {

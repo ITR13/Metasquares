@@ -1,7 +1,8 @@
 package Animators
 
 import (
-	"MetasquaresAI/Engine"
+	"github.com/ITR13/metasquares/engine"
+
 	"fmt"
 )
 

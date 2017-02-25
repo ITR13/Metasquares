@@ -1,6 +1,6 @@
 package AI
 
-import "MetasquaresAI/Engine"
+import "github.com/ITR13/metasquares/engine"
 
 type HighBlocker struct {
 	w, h, players int

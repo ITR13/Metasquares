@@ -1,7 +1,7 @@
 package AI
 
 import (
-	"MetasquaresAI/Engine"
+	"github.com/ITR13/metasquares/engine"
 )
 
 type BruteForcer struct {
@@ -93,6 +93,7 @@ func (bruteForcer *BruteForcer) GetWinner(c Engine.Color) (x, y int,
 	return wx, wy, winner
 }
 
+/*
 type MonoBruteForcer struct {
 	bruteForcer BruteForcer
 	path        []int
@@ -108,7 +109,7 @@ func (mbf *MonoBruteForcer) Init(w, h, players int) {
 func (mbf *MonoBruteForcer) Place(color Engine.Color,
 	board Engine.BoardAbstract) (int, int) {
 	if mbf.path[mbf.placed]!=-1{
-		
+
 	}
 	x, y, _ := mbf.bruteForcer.GetWinner(color)
 	return x, y
@@ -121,3 +122,4 @@ func (mbf *MonoBruteForcer) Placed(x, y int, c Engine.Color) {
 
 	mbf.bruteForcer.Placed(x, y, c)
 }
+*/
