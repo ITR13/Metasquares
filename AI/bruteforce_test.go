@@ -3,7 +3,7 @@ package AI
 import (
 	"testing"
 
-	"MetasquaresAI/Engine"
+	"github.com/ITR13/metasquares/engine"
 )
 
 func TestInit(t *testing.T) {
@@ -25,14 +25,14 @@ func TestInit(t *testing.T) {
 }
 
 func TestGetWinner(t *testing.T) {
-	br := BruteForcer{}
+	br := GetBruteForcer(false, 1, nil, nil)
 	br.Init(3, 3, 2)
 	br.Placed(0, 0, Engine.Red)
 	br.Placed(0, 2, Engine.Red)
 	br.Placed(2, 0, Engine.Red)
 	br.Placed(0, 1, Engine.NotAColor)
 
-	x, y, winner := br.GetWinner(Engine.Red)
+	x, y, winner, _ := br.GetWinner(Engine.Red, 0)
 	if x != 2 || y != 2 || winner != Engine.Red {
 		t.Errorf("Wanted %d at %d,%d, got %d at %d,%d",
 			Engine.Red, 2, 2, winner, x, y)
@@ -40,7 +40,7 @@ func TestGetWinner(t *testing.T) {
 		t.Log("Passed Easy Win")
 	}
 
-	x, y, winner = br.GetWinner(Engine.Green)
+	x, y, winner, _ = br.GetWinner(Engine.Green, 0)
 	if x != 2 || y != 2 || winner != Engine.Mixed {
 		t.Errorf("Wanted %d at %d,%d, got %d at %d,%d",
 			Engine.Mixed, 2, 2, winner, x, y)
@@ -60,7 +60,7 @@ func TestGetWinner(t *testing.T) {
 	br.Placed(3, 2, Engine.NotAColor)
 	br.Placed(3, 3, Engine.NotAColor)
 
-	x, y, winner = br.GetWinner(Engine.Green)
+	x, y, winner, _ = br.GetWinner(Engine.Green, 0)
 	if winner != Engine.Red {
 		t.Errorf("Wanted %d at ?,?, got %d at %d,%d",
 			Engine.Red, winner, x, y)
@@ -71,14 +71,14 @@ func TestGetWinner(t *testing.T) {
 }
 
 func TestGetWinnerWithAI(t *testing.T) {
-	br := GetBruteForcer(nil, &FirstAvailable{})
+	br := GetBruteForcer(true, 1, nil, &FirstAvailable{})
 	br.Init(3, 3, 2)
 	br.Placed(0, 0, Engine.Red)
 	br.Placed(0, 2, Engine.Red)
 	br.Placed(2, 0, Engine.Red)
 	br.Placed(0, 1, Engine.NotAColor)
 
-	x, y, winner := br.GetWinner(Engine.Red)
+	x, y, winner, _ := br.GetWinner(Engine.Red, 0)
 	if winner != Engine.Red {
 		t.Errorf("Wanted %d at ?,?, got %d at %d,%d",
 			Engine.Red, winner, x, y)
@@ -86,7 +86,7 @@ func TestGetWinnerWithAI(t *testing.T) {
 		t.Log("Passed Easy Win")
 	}
 
-	x, y, winner = br.GetWinner(Engine.Green)
+	x, y, winner, _ = br.GetWinner(Engine.Green, 1)
 	if winner != Engine.Red {
 		t.Errorf("Wanted %d at ?,?, got %d at %d,%d",
 			Engine.Red, winner, x, y)
@@ -106,7 +106,7 @@ func TestGetWinnerWithAI(t *testing.T) {
 	br.Placed(3, 2, Engine.NotAColor)
 	br.Placed(3, 3, Engine.NotAColor)
 
-	x, y, winner = br.GetWinner(Engine.Green)
+	x, y, winner, _ = br.GetWinner(Engine.Green, 0)
 	if winner != Engine.Red {
 		t.Errorf("Wanted %d at ?,?, got %d at %d,%d",
 			Engine.Red, winner, x, y)

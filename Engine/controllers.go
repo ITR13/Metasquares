@@ -19,6 +19,7 @@ type Animator interface {
 type BoardAbstract interface {
 	GetColor(x, y int) Color
 	GetShapes(x, y int) ([]Color, []int, []int)
+	GetSize() (int, int)
 }
 
 type Controller interface {

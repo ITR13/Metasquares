@@ -1,26 +1,26 @@
 package Engine
 
 type Vector struct {
-	x, y int
+	X, Y int
 }
 
 func (vector *Vector) Add(other *Vector) {
-	vector.x += other.x
-	vector.y += other.y
+	vector.X += other.X
+	vector.Y += other.Y
 }
 
 func (vector *Vector) Rotate90() {
-	vector.x, vector.y = -vector.y, vector.x
+	vector.X, vector.Y = -vector.Y, vector.X
 }
 
 func (vector *Vector) IterateBorder() bool {
-	if vector.y < 0 || vector.x <= 0 {
+	if vector.Y < 0 || vector.X <= 0 {
 		return false
 	}
-	if vector.y < vector.x {
-		vector.y++
+	if vector.Y < vector.X {
+		vector.Y++
 	} else {
-		vector.x--
+		vector.X--
 	}
 	return true
 }
@@ -41,10 +41,10 @@ func (board *Board) GetTiles(origin, move *Vector) *[]*Tile {
 }
 
 func (board *Board) AtVector(pos *Vector) *Tile {
-	return board.At(pos.x, pos.y)
+	return board.At(pos.X, pos.Y)
 }
 
 func (vector *Vector) Square() int {
 	//TODO Use root rounded up instead
-	return vector.x*vector.x + vector.y*vector.y
+	return vector.X*vector.X + vector.Y*vector.Y
 }

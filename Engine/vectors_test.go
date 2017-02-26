@@ -11,9 +11,9 @@ func TestAdd(t *testing.T) {
 		for y := -5; y <= 5; y++ {
 			v.Add(&Vector{x, y})
 			ox, oy = ox+x, oy+y
-			if ox != v.x || oy != v.y {
+			if ox != v.X || oy != v.Y {
 				t.Fatalf("Failed adding %d,%d to %d,%d (got %d,%d)\n",
-					x, y, ox-x, oy-y, v.x, v.y)
+					x, y, ox-x, oy-y, v.X, v.Y)
 			}
 		}
 	}
@@ -25,25 +25,25 @@ func TestRotate90(t *testing.T) {
 		for y := -5; y <= 5; y++ {
 			a, b := &Vector{x, y}, &Vector{x, y}
 			b.Rotate90()
-			c := &Vector{b.x, b.y}
+			c := &Vector{b.X, b.Y}
 			b.Rotate90()
-			if a.x != -b.x || a.y != -b.y {
-				t.Fatalf("180: %d,%d != %d,%d\n", -a.x, -a.y, b.x, b.y)
+			if a.X != -b.X || a.Y != -b.Y {
+				t.Fatalf("180: %d,%d != %d,%d\n", -a.X, -a.Y, b.X, b.Y)
 			}
 			b.Rotate90()
-			if c.x != -b.x || c.y != -b.y {
-				t.Fatalf("270: %d,%d != %d,%d\n", -c.x, -c.y, b.x, b.y)
+			if c.X != -b.X || c.Y != -b.Y {
+				t.Fatalf("270: %d,%d != %d,%d\n", -c.X, -c.Y, b.X, b.Y)
 			}
 			b.Rotate90()
-			if a.x != b.x || a.y != b.y {
-				t.Fatalf("360: %d,%d != %d,%d\n", a.x, a.y, b.x, b.y)
+			if a.X != b.X || a.Y != b.Y {
+				t.Fatalf("360: %d,%d != %d,%d\n", a.X, a.Y, b.X, b.Y)
 			}
 		}
 	}
 
 	one := &Vector{1, 0}
 	one.Rotate90()
-	if one.x != 0 || one.y != 1 {
+	if one.X != 0 || one.Y != 1 {
 		t.Fatal("Rotating the wrong direction (not that it doesn't matter)\n")
 	}
 
@@ -62,9 +62,9 @@ func TestIterateBorder(t *testing.T) {
 	for d := 1; d < 5; d++ {
 		v := &Vector{d, 0}
 		for y := 0; y < d; y++ {
-			if v.x != d || v.y != y {
+			if v.X != d || v.Y != y {
 				t.Errorf("Failed when iterating to %d,%d: %v\n", d, y, v)
-				v.x, v.y = d, y
+				v.X, v.Y = d, y
 			}
 			if !v.IterateBorder() {
 				t.Errorf("Early iteration error (%d,%d): %v\n", d, y, v)
@@ -74,9 +74,9 @@ func TestIterateBorder(t *testing.T) {
 			}
 		}
 		for x := d; x >= 0; x-- {
-			if v.x != x || v.y != d {
+			if v.X != x || v.Y != d {
 				t.Errorf("Failed when iterating to %d,%d: %v\n", x, d, v)
-				v.x, v.y = x, d
+				v.X, v.Y = x, d
 			}
 			if v.IterateBorder() == (x == 0) {
 				t.Errorf("Late iteration error (%d,%d): %v\n", d, x, v)
@@ -153,13 +153,13 @@ func TestGetTiles(t *testing.T) {
 			if (diamond == nil) == (x == 1 && y == 0) {
 				t.Errorf("Error when getting diamond-shape (%d,%d)\n", x, y)
 			}
-			if origin.x != x || origin.y != y {
+			if origin.X != x || origin.Y != y {
 				t.Fatalf("Origin not back at correct position after finishing"+
-					" (%d,%d != %d,%d)\n", x, y, origin.x, origin.y)
+					" (%d,%d != %d,%d)\n", x, y, origin.X, origin.Y)
 			}
-			if diag.x != 1 || diag.y != 1 {
+			if diag.X != 1 || diag.Y != 1 {
 				t.Fatalf("Diagonal not back at correct position after "+
-					"finishing (%d,%d != %d,%d)\n", x, y, diag.x, diag.y)
+					"finishing (%d,%d != %d,%d)\n", x, y, diag.X, diag.Y)
 			}
 		}
 	}
