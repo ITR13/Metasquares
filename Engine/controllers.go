@@ -44,11 +44,11 @@ func (game *Game) AdvanceSingle(player uint8) {
 	x, y := game.players[player].Place(Color(player+1), game.board)
 	tile := game.board.At(x, y)
 	if tile == nil {
-		fmt.Errorf("Player %d tried to do an illegal move (%d,%d is nil)",
+		fmt.Printf("Player %d tried to do an illegal move (%d,%d is nil)\n",
 			player+1, x, y)
 		return
 	} else if tile.color != Empty {
-		fmt.Errorf("Player %d tried to do an illegal move (%d,%d is %d)",
+		fmt.Printf("Player %d tried to do an illegal move (%d,%d is %d)\n",
 			player+1, x, y, tile.color)
 		return
 	}
@@ -78,7 +78,7 @@ func (game *Game) Play() Color {
 func (board *Board) GetColor(x, y int) Color {
 	tile := board.At(x, y)
 	if tile == nil {
-		fmt.Errorf("Tried to get color at illegal position (%d,%d is nil)",
+		fmt.Errorf("Tried to get color at illegal position (%d,%d is nil)\n",
 			x, y)
 		return NotAColor
 	}
@@ -87,7 +87,7 @@ func (board *Board) GetColor(x, y int) Color {
 func (board *Board) GetShapes(x, y int) ([]Color, []int, []int) {
 	tile := board.At(x, y)
 	if tile == nil {
-		fmt.Errorf("Tried to get shapes at illegal position (%d,%d is nil)",
+		fmt.Errorf("Tried to get shapes at illegal position (%d,%d is nil)\n",
 			x, y)
 		return make([]Color, 0), make([]int, 0), make([]int, 0)
 	}

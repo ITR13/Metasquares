@@ -161,7 +161,7 @@ func (bruteForcer *BruteForcer) GetWinner(c Engine.Color,
 
 	if winner == Engine.Empty {
 		return -1, -1, board.GetLeader(),
-			&[2]interface{}{&Engine.Vector{-1, -1}, nil}
+			&[2]interface{}{nil, nil}
 	}
 
 	if layer < bruteForcer.log {

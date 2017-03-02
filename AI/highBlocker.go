@@ -107,10 +107,12 @@ func (mt *MixedTaker) Place(color Engine.Color,
 		return c != Engine.Empty && c != Engine.Mixed
 	})
 
-	if (block.x == take.x && block.y == take.y) ||
-		(block.x == mixed.x && block.y == mixed.y) {
+	if (block.x != -1 || block.y != -1) &&
+		((block.x == take.x && block.y == take.y) ||
+			(block.x == mixed.x && block.y == mixed.y)) {
 		return block.x, block.y
-	} else if take.x == mixed.x && take.y == mixed.y {
+	} else if (take.x != -1 || take.y != -1) &&
+		take.x == mixed.x && take.y == mixed.y {
 		return take.x, take.y
 	}
 
