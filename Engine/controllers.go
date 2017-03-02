@@ -69,8 +69,23 @@ func (game *Game) Advance() {
 }
 
 func (game *Game) Play() Color {
-	for game.turn*len(game.players) <= game.board.w*game.board.h {
-		game.Advance()
+	piecesLeft := game.board.w * game.board.h
+	skips := 0
+	for game.turn*len(game.players) < piecesLeft {
+		for game.turn*len(game.players) < piecesLeft {
+			game.Advance()
+		}
+		for x := 0; x < game.board.w; x++ {
+			for y := 0; y < game.board.h; y++ {
+				if game.board.GetColor(x, y) == Empty {
+					piecesLeft++
+				}
+			}
+		}
+		skips++
+		if skips > 10 {
+			break
+		}
 	}
 	return game.board.GetLeader()
 }

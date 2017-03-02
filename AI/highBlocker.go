@@ -135,6 +135,17 @@ func (mt *MixedTaker) Place(color Engine.Color,
 		}
 	}
 
+	if highest.x == -1 && highest.y == -1 {
+		w, h := board.GetSize()
+		for x := 0; x < w; x++ {
+			for y := 0; y < h; y++ {
+				if board.GetColor(x, y) == Engine.Empty {
+					return x, y
+				}
+			}
+		}
+	}
+
 	return highest.x, highest.y
 }
 

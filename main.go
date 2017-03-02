@@ -2,23 +2,22 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/ITR13/metasquares/AI"
-	"github.com/ITR13/metasquares/animator"
+	//"github.com/ITR13/metasquares/animator"
 	"github.com/ITR13/metasquares/engine"
 )
 
 func main() {
 	winners := [3]int{0, 0, 0}
-	for w := 8; w < 12; w++ {
+	for w := 2; w < 12; w++ {
 		for h := w; h == w; h++ {
 			game := Engine.MakeGame(w, h,
 				&AI.MixedTaker{},
-				&AI.PlayerC{os.Stdin},
+				AI.GetBruteForcer(false, 0, nil, nil), //&AI.MixedTaker{}),
 			)
 			aniBoard := Engine.MakeBoard(w, h)
-			game.Animator = Animators.Text{true, false, aniBoard}
+			//game.Animator = Animators.Text{true, false, aniBoard}
 			for i := 1; i < w && i < h; i++ {
 				aniBoard.RegisterSquaresWithDistance(i)
 			}

@@ -139,6 +139,10 @@ func (shape *Shape) ContainedIn(other *Shape) bool {
 }
 
 func (board *Board) At(x, y int) *Tile {
+	if x == -1 && y == -1 {
+		return &Tile{Empty, -1, -1, make([]*Shape, 0)}
+	}
+
 	if x < 0 || y < 0 || x >= board.w || y >= board.h {
 		return nil
 	}
