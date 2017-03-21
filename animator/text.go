@@ -1,3 +1,20 @@
+/*
+    This file is part of InvertoTanks.
+
+    Foobar is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    InvertoTanks is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with InvertoTanks.  If not, see <http://www.gnu.org/licenses/>.
+*/
+	
 package Animators
 
 import (
@@ -17,9 +34,9 @@ func (text Text) Placed(x, y int, c Engine.Color) {
 		board.At(x, y).SetColor(c)
 		if text.PrintScore {
 			fmt.Printf(" *\tPlaced %d at %d,%d: %v\n",
-				c, x, y, board.GetScores())
+				c, x+1, y+1, board.GetScores())
 		} else {
-			fmt.Printf(" *\tPlaced %d at %d,%d\n", c, x, y)
+			fmt.Printf(" *\tPlaced %d at %d,%d\n", c, x+1, y+1)
 		}
 
 		if text.PrintBoard {
@@ -41,6 +58,6 @@ func (text Text) Placed(x, y int, c Engine.Color) {
 			fmt.Println()
 		}
 	} else {
-		fmt.Printf(" *\tPlaced %d at %d,%d\n", c, x, y)
+		fmt.Printf(" *\tPlaced %d at %d,%d\n", c, x+1, y+1)
 	}
 }

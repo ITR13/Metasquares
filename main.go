@@ -1,34 +1,48 @@
+/*
+    This file is part of InvertoTanks.
+
+    Foobar is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    InvertoTanks is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with InvertoTanks.  If not, see <http://www.gnu.org/licenses/>.
+*/
+	
 package main
 
 import (
 	"fmt"
 
 	"github.com/ITR13/metasquares/AI"
-	//"github.com/ITR13/metasquares/animator"
+	"github.com/ITR13/metasquares/animator"
 	"github.com/ITR13/metasquares/engine"
 )
 
 func main() {
-	winners := [3]int{0, 0, 0}
-	for w := 2; w < 12; w++ {
+	winners := [9]int{}
+	for w := 6; w < 7; w++ {
 		for h := w; h == w; h++ {
 			game := Engine.MakeGame(w, h,
 				&AI.MixedTaker{},
-				AI.GetBruteForcer(false, 0, nil, nil), //&AI.MixedTaker{}),
+				AI.GetBruteForcer(false, 2, nil, &AI.MixedTaker{}),
 			)
 			aniBoard := Engine.MakeBoard(w, h)
-			//game.Animator = Animators.Text{true, false, aniBoard}
+			game.Animator = Animators.Text{true, true, aniBoard}
+			//			game.Animator = nil
 			for i := 1; i < w && i < h; i++ {
 				aniBoard.RegisterSquaresWithDistance(i)
 			}
 			winner := game.Play()
 			fmt.Printf("%d Won %dx%d!\n", winner, w, h)
-			if winner == 9 {
-				winner = 3
-			}
 			winners[winner-1]++
 		}
 	}
-	fmt.Printf("\nWins:\n P1:\t%d\n P2:\t%d\n Draw:\t%d\n",
-		winners[0], winners[1], winners[2])
+	fmt.Println(winners)
 }
